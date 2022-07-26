@@ -1,0 +1,11 @@
+{% extends 'todoapp/base.html' %}
+
+{% block content %}
+
+<ul>
+    <li> {% if todo.important %} <b> {% endif %} {{ todo.title }} {% if todo.important %} </b> {% endif %} </li>
+    
+</ul>
+
+
+{% endblock %}

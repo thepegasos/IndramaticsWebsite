@@ -1,0 +1,13 @@
+{% extends 'todoapp/base.html' %}
+
+{% block content %}
+
+<h1>this user has {{ todos.count }} todo{{ todo.count|pluralize }}</h1>
+<ul>
+    {% for todo in todos %}
+    <li> <a href="{% url 'viewtodo' todo.id %}"> {% if todo.important %} <b> {% endif %} {{ todo.title }} {% if todo.important %} </b> {% endif %}  </a> </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}
