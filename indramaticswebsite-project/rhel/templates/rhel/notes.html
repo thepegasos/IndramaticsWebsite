@@ -1,0 +1,681 @@
+{% load static %}
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>RedHat Certified System Administrator - Notes</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 1000px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 120%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="7f5affdd-179a-4c5e-97a3-9f09aff4a66e" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🔮</span></div><h1 class="page-title">RedHat Certified System Administrator - Notes</h1></header><div class="page-body"><ul id="5af8f711-75ff-4342-a2e1-3713d6dc49ee" class="toggle"><li><details open=""><summary>RH124 Topics</summary><ul id="fa5534af-52db-476c-819f-096fd75c463b" class="bulleted-list"><li style="list-style-type:disc">RemoteExam Video: <a href="https://www.youtube.com/watch?v=LX3VMIAuPzg">https://www.youtube.com/watch?v=LX3VMIAuPzg</a></li></ul><ul id="e92224e6-a982-4aad-b474-f641fc28de4e" class="toggle"><li><details open=""><summary><mark class="highlight-teal">Get Started with RedHat Enterprise Linux</mark></summary><ul id="273f1265-7501-435c-92b3-e17a4abafb86" class="bulleted-list"><li style="list-style-type:disc">Node1: Username and password are generally given</li></ul><ul id="e2a73879-c3cf-4150-97ed-3a59e5e9c372" class="bulleted-list"><li style="list-style-type:disc">Node2: Generally not given<ul id="2af0fde7-0e05-4109-88b8-0c24e3b69b9e" class="bulleted-list"><li style="list-style-type:circle">They are testing whether you can recover the root password </li></ul></li></ul><ul id="8acc6e3b-d1b2-48fd-a8ee-a0edff8cb37c" class="bulleted-list"><li style="list-style-type:disc">Ubuntu is based on Debian, backed by Canonical Ltd.</li></ul><ul id="56965f3c-9a50-486b-8121-beae896b8a5d" class="bulleted-list"><li style="list-style-type:disc">Fedora is also open source sponsored by RedHat<ul id="8c320910-fea9-44ea-8401-a4b955dcfe04" class="bulleted-list"><li style="list-style-type:circle">Upstream community distribution of RedHat Linux</li></ul><ul id="b9e9cae7-baaf-4412-b1ba-021c32013bcc" class="bulleted-list"><li style="list-style-type:circle">Bleeding edge of Red Hat – upstream to CentOS, refer – <a href="https://www.zdnet.com/article/where-fedora-fits-in-the-new-red-hat-centos-stream-linux-world/">https://www.zdnet.com/article/where-fedora-fits-in-the-new-red-hat-centos-stream-linux-world/</a>. </li></ul></li></ul></details></li></ul><ul id="cfda278c-add3-45ff-9e35-465af1f5dc2a" class="toggle"><li><details open=""><summary><mark class="highlight-teal">Access Command Line</mark></summary></details></li></ul><ul id="9aaeb293-c137-41c0-aec9-ed6a9692c1a6" class="toggle"><li><details open=""><summary><mark class="highlight-teal">Manage files from the command line → 59Min</mark></summary><ul id="966d94cd-784f-42f2-aa0d-0230d2699975" class="toggle"><li><details open=""><summary>What is a filesystem?</summary><ul id="e15d1000-1720-42d0-ba12-9edccf1467b9" class="bulleted-list"><li style="list-style-type:disc">It’s a system created by an OS to mange files. The system controls how data is saved or retrieved. </li></ul><ul id="cc17f696-2b35-4213-ac55-88b6330aae95" class="bulleted-list"><li style="list-style-type:disc">ext3, ext4, xfs are Linux file systems</li></ul><ul id="e977d514-426a-4f77-91be-c2d1a84a6824" class="bulleted-list"><li style="list-style-type:disc">NTFS, FAT are Windows file systems</li></ul><figure id="e39dc138-1f42-4d6f-93af-57031248179e" class="image"><a href="{% static 'rhel/Untitled.png' %}"><img style="width:1840px" src="{% static 'rhel/Untitled.png' %}"/></a></figure></details></li></ul><ul id="5876e766-5415-40c4-b6eb-c32e74882f33" class="toggle"><li><details open=""><summary>Directory Listing Attributes</summary><ul id="d00c0f64-575e-4784-9672-dd6e8cd11b8c" class="bulleted-list"><li style="list-style-type:disc">d → Directory</li></ul><ul id="be56f203-3adb-46f6-870b-cf699b584104" class="bulleted-list"><li style="list-style-type:disc">l (L) → Link</li></ul><figure id="f21f73d1-5308-4b28-a9ab-0edd7775e468" class="image"><a href="{% static 'rhel/Untitled%201.png' %}"><img style="width:2240px" src="{% static 'rhel/Untitled%201.png' %}"/></a></figure></details></li></ul><ul id="799fe955-12ab-4e0e-a849-5b37fce4f977" class="toggle"><li><details open=""><summary>File Maintenance Commands</summary><ul id="d00d7c0f-d128-4af9-8949-4eda8a4f836c" class="bulleted-list"><li style="list-style-type:disc"><code>chgrp</code> → Change the ownership of the file at group level</li></ul><ul id="7423ae05-b6cb-44ef-8dd7-cb241b9dc3c2" class="bulleted-list"><li style="list-style-type:disc"><code>chown</code> → Change the ownership of the file at user level<ul id="b765d3e5-2201-4637-a33a-a5c01bd34ee0" class="bulleted-list"><li style="list-style-type:circle">Can also be used for changing user and group ownership with use of colon <code>:</code> in between user and group name. </li></ul></li></ul><ul id="4ec5d854-b41f-4926-aef5-95b00cdb262e" class="bulleted-list"><li style="list-style-type:disc"><code>rmdir</code> → Remove empty directory</li></ul></details></li></ul><ul id="9aa89327-6aee-4088-9e4d-febcf65b21a9" class="toggle"><li><details open=""><summary>Soft Links and Hard Links</summary><ul id="b36b7af2-1117-497d-b38d-78492823fecb" class="bulleted-list"><li style="list-style-type:disc">inode: Pointer or number of a file on the hard disk<ul id="bf234bed-26e0-47db-b267-31d57da39043" class="bulleted-list"><li style="list-style-type:circle">To get the inode of the file, run <code>ls -li</code> , i→ inode</li></ul></li></ul><ul id="b317408f-ecb8-401e-9290-dd8491d46775" class="bulleted-list"><li style="list-style-type:disc">Soft Link = Link will be removed if file removed or renamed<ul id="ca180a6a-6017-44df-8e19-9e0f24580c34" class="bulleted-list"><li style="list-style-type:circle">Soft linked files have <span style="border-bottom:0.05em solid"><strong>different</strong></span> inodes. </li></ul><ul id="2dea7497-574d-4576-8f88-596a6caf1c9c" class="bulleted-list"><li style="list-style-type:circle">Very similar as Windows Shortcuts</li></ul><ul id="39db97c7-67e4-41be-92f4-cdcf1ae3fca8" class="bulleted-list"><li style="list-style-type:circle">Also called as “Symlink” or “Symbolic Link”</li></ul><ul id="50cdb84e-da41-42d8-bfa7-ef99af405566" class="bulleted-list"><li style="list-style-type:circle">Soft Links/symlinks/symbolic links can be created for files as well as directories. </li></ul><ul id="060cff00-1fd1-445c-8538-c2dc1d222a5f" class="bulleted-list"><li style="list-style-type:circle">Soft linking is allowed across partitions</li></ul></li></ul><ul id="8ad5aea2-a751-4a6c-ae14-bd107a3da8b5" class="bulleted-list"><li style="list-style-type:disc">Hard Link = Deleting, renaming, or moving the original file will not affect the hard link. <ul id="4af427e1-ecbc-4c7b-ba9a-1bdc8f8df4a5" class="bulleted-list"><li style="list-style-type:circle">Hard linked files have <span style="border-bottom:0.05em solid"><strong>same</strong></span> inodes. </li></ul><ul id="45696cb4-eec5-4c9c-aceb-eab809d73467" class="bulleted-list"><li style="list-style-type:circle">Hard links are not allowed on Directories</li></ul><ul id="a0727a79-d814-455e-84ac-6fa0dafbf7f5" class="bulleted-list"><li style="list-style-type:circle"><strong>Hard links only work within the same partition. </strong><ul id="b70810ef-a20f-4136-82ca-45846bd62224" class="bulleted-list"><li style="list-style-type:square">You get an error “<em>Invalid cross-device link</em>” if the directory where you are trying to create a hard link and the directory where the original file is located. </li></ul></li></ul><figure id="3e11120e-5e22-4d01-aafa-5048fee86dba" class="image"><a href="{% static 'rhel/Untitled%202.png' %}"><img style="width:1630px" src="{% static 'rhel/Untitled%202.png' %}"/></a></figure></li></ul></details></li></ul><ul id="e3b6def1-332c-4502-9f90-cdf816c78084" class="toggle"><li><details open=""><summary>Input and Output Redirectors</summary><ul id="e2d7f595-ebed-494d-8e14-24f9f21a85b6" class="toggle"><li><details open=""><summary>3 Redirectors in Linux</summary><ul id="7b4e34c0-bc8b-4278-86b4-39364f413f79" class="bulleted-list"><li style="list-style-type:disc">Standard Input (<strong>stdin) </strong>→ File descriptor number = 0</li></ul><ul id="50a3d6cb-3cff-4b71-a68e-736a29e4c8e1" class="bulleted-list"><li style="list-style-type:disc">Standard Output <strong>(stdout) </strong>→ File descriptor number = 1</li></ul><ul id="98c234b0-cb88-49ba-a257-fd8fe4e41da3" class="bulleted-list"><li style="list-style-type:disc">Standard Error (<strong>stderr) </strong>→ File descriptor number = 2</li></ul></details></li></ul><ul id="a88130d1-4034-4b9c-aca7-467558780091" class="toggle"><li><details open=""><summary>Output (<strong>stdout) – 1</strong></summary><ul id="ce7c0185-7ab0-42d1-8761-42e9cf046d99" class="bulleted-list"><li style="list-style-type:disc">By default when running a command its output goes to the terminal</li></ul><ul id="7995478e-750b-4a9d-b164-177bf89190a2" class="bulleted-list"><li style="list-style-type:disc">The output of a command can be routed to a file using <code>&gt;</code> (new/overwrite) or <code>&gt;&gt;</code> (append) symbols.</li></ul><p id="db6a1467-63b2-4ac6-81f3-a02e175c9f3e" class="">
+</p></details></li></ul><ul id="966e450f-2e93-432c-b873-dad6ee930047" class="toggle"><li><details open=""><summary>Input (<strong>stdin</strong>) – 0</summary><ul id="e9b53aa6-de9d-4674-8350-67705132de3d" class="bulleted-list"><li style="list-style-type:disc">Input is used when feeding file contents to a file</li></ul><ul id="d4badaa6-602c-4a00-bd6e-c500cafe4ac0" class="bulleted-list"><li style="list-style-type:disc">E.g. <code>cat &lt; some_file</code><ul id="afe39ae6-7f9a-41a1-963c-fa8f60c9a145" class="bulleted-list"><li style="list-style-type:circle"><code>mail -s “office memo” allusers@abc.com &lt; memoletter</code></li></ul></li></ul></details></li></ul><ul id="db621a94-1a0e-4498-9097-7a24aaf0b383" class="toggle"><li><details open=""><summary>Error (<strong>stderr) – 2</strong></summary><ul id="625c6002-61dc-483a-a9b3-af66ffe2d607" class="bulleted-list"><li style="list-style-type:disc">When command is executed via keyboard, that is <strong>stdin – 0</strong></li></ul><ul id="23aaae40-1470-413a-ae41-a44824699523" class="bulleted-list"><li style="list-style-type:disc">When output goes on the screen , that output is <strong>stdout – 1</strong></li></ul><ul id="e7dd763e-975d-4309-8f26-78d14fa90694" class="bulleted-list"><li style="list-style-type:disc">When command produces any errors on the screen then it’s <strong>stderr – 2</strong><ul id="2682337b-0f03-4890-9bc4-b5fef1d3ce0d" class="bulleted-list"><li style="list-style-type:circle">We can use redirects to route errors from the screen</li></ul><ul id="8ffdf32e-424d-43d1-baf9-0bfa6a88e133" class="bulleted-list"><li style="list-style-type:circle">E.g. <code>ls -l /non_existant_file 2&gt; errorfile</code><ul id="73bdf6fd-850c-4991-874e-523cced7728e" class="bulleted-list"><li style="list-style-type:square"><code>telnet localhost 2&gt; telnet_errors.log</code></li></ul></li></ul></li></ul></details></li></ul></details></li></ul><ul id="3a2e0db4-f0a2-4b4f-9630-b907a21385e8" class="toggle"><li><details open=""><summary>Pipe (|)</summary><ul id="70710618-292f-4490-ab3e-7e9d95e59aa1" class="bulleted-list"><li style="list-style-type:disc">A pipe is used by the shell to connect the output of one command to another command</li></ul><ul id="1a382290-087d-497c-be4b-f1c137df9e47" class="bulleted-list"><li style="list-style-type:disc"><code>ls -l | more</code> → One page at a time. <code>Space</code> to go to the next page. <ul id="1c97ae71-b50e-4a71-8baa-986faa2d0efa" class="bulleted-list"><li style="list-style-type:circle">Note: If <code>more</code> is used with pipes, can not go back</li></ul><ul id="8d615068-9a39-4590-8973-27b6ce0ed56f" class="bulleted-list"><li style="list-style-type:circle">Otherwise for files, when opened with <code>more</code>, you can go back by <code>b</code></li></ul></li></ul><figure id="7d0b2bb7-7a58-431f-8be8-685a796aceb9" class="image"><a href="{% static 'rhel/Untitled%203.png' %}"><img style="width:1630px" src="{% static 'rhel/Untitled%203.png' %}"/></a></figure></details></li></ul></details></li></ul><ul id="cd9ab7a8-ce70-43ce-96a1-41e66b8af076" class="toggle"><li><details open=""><summary><mark class="highlight-teal">Get help in Red Hat Enterprise Linux → 5Min</mark></summary><ul id="4df603b8-5590-49d9-9977-b82bc2c2e0d0" class="toggle"><li><details open=""><summary><code>whatis</code></summary><ul id="2a32cb40-64cb-43da-9726-1a3a0c47c18c" class="toggle"><li><details open=""><summary><code>whatis ls</code></summary></details></li></ul></details></li></ul><ul id="cd42813e-ac5d-4186-92e5-5129530e90c2" class="toggle"><li><details open=""><summary>command —help</summary><ul id="4b4859d3-c88c-4c39-9a3b-7a4f583b7083" class="toggle"><li><details open=""><summary><code>ls --help</code></summary></details></li></ul></details></li></ul><ul id="006e5e46-8b88-47cd-9fed-675db2711ce8" class="toggle"><li><details open=""><summary>man</summary><ul id="187d9489-b75c-4ed4-9149-02dceefbbcbf" class="toggle"><li><details open=""><summary><code>man ls</code></summary></details></li></ul></details></li></ul></details></li></ul><ul id="c42c8df3-ced5-438e-a7e8-4df97b1fe6a5" class="toggle"><li><details open=""><summary><mark class="highlight-teal">Create, view, and edit the text files → 14Min</mark></summary><ul id="0e6b0314-52cb-4285-8b7d-298fc67c6579" class="toggle"><li><details open=""><summary>several editors: <strong>vi (our preferred editor)</strong>, ed, ex, emacs, pico, vim (advanced version of vi)</summary></details></li></ul><ul id="180641cc-c102-4bd7-bfbf-cef11afcda00" class="toggle"><li><details open=""><summary>More details on <code>vi</code>are in <a href="https://www.notion.so/Installation-Recipes-675225b541dd4a3182c54e81c03d5f26">Installation receipies</a> Vi under linux</summary></details></li></ul></details></li></ul><ul id="8880d2bb-2004-4566-a850-28a5b16f81b5" class="toggle"><li><details open=""><summary><mark class="highlight-teal">Manage local users  and groups → 37Min</mark></summary><ul id="b6a9254a-1b5f-4963-8ea6-4031f5dfd289" class="toggle"><li><details open=""><summary>Commands</summary><ul id="f451262c-3b9f-4efb-8f97-660de02818dd" class="toggle"><li><details open=""><summary>useradd</summary><ul id="e2c250f7-6733-4ebf-83e7-f1e5bad26dc4" class="bulleted-list"><li style="list-style-type:disc"><code>useradd -g superheros -s/bin/bash -c &quot;user description&quot; -m -d /home/spiderman spiderman</code></li></ul><ul id="7cd6a6cb-8dcd-4fb6-a22f-73f0060b0730" class="bulleted-list"><li style="list-style-type:disc">-g = group of the user</li></ul><ul id="ac2330fa-0ddb-49ad-a3a2-fcbf78cb0056" class="bulleted-list"><li style="list-style-type:disc">-s = default shell of the user</li></ul><ul id="1d319fe8-05b1-4518-a199-6e8ed94c3852" class="bulleted-list"><li style="list-style-type:disc">-c = user description / full name </li></ul><ul id="2bcf6965-4e64-4418-b1b3-1c68b09d7115" class="bulleted-list"><li style="list-style-type:disc">-m = create user’s home directory</li></ul><ul id="063f0735-c24f-451d-80ac-0e892969db71" class="bulleted-list"><li style="list-style-type:disc">-d = home directory of the user</li></ul><ul id="940ecafb-ad74-4ca0-8b54-0915cde05ad5" class="bulleted-list"><li style="list-style-type:disc">-M = No home directory (somewhat tricky when user logs in, refer <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/s2-users-cl-tools">here</a>)</li></ul></details></li></ul><ul id="8be81915-51fc-4bcd-8b57-ff41625d3fa1" class="toggle"><li><details open=""><summary>userdel</summary><ul id="55f3906a-79cf-4a48-be2e-2e4d8d45629d" class="bulleted-list"><li style="list-style-type:disc"><code>userdel -r spiderman</code><ul id="43d88a16-ede4-453e-9b95-52231da98403" class="bulleted-list"><li style="list-style-type:circle">-r = delete the home directory as well</li></ul></li></ul></details></li></ul><ul id="32c1d70e-1f12-4ad6-89bc-ea8abd8488a9" class="toggle"><li><details open=""><summary>groupadd</summary><ul id="46aadcd3-fa7c-4678-9671-378714351ef4" class="bulleted-list"><li style="list-style-type:disc"><code>groupadd superheros</code> - create a new group</li></ul><ul id="24e19190-a4fb-41b1-8c79-84196b4d0913" class="bulleted-list"><li style="list-style-type:disc"><code>cat /etc/group</code> – to verify</li></ul><ul id="b0060957-681d-4fd0-b88f-51442ba1f1f0" class="bulleted-list"><li style="list-style-type:disc"><code>groupdel superheros</code> - delete the group</li></ul></details></li></ul><ul id="25a98c3b-37b9-46d0-88f7-5a1eaa567890" class="toggle"><li><details open=""><summary>groupdel</summary></details></li></ul><ul id="3de6b5a8-ef9b-4398-8754-9dd4ac123bb4" class="toggle"><li><details open=""><summary>usermod</summary><ul id="c74bbfac-6efe-4efe-ba10-1f36aa2e8ee9" class="bulleted-list"><li style="list-style-type:disc">modify the group of the user (-G new_group username)<ul id="891d219d-e58d-4dec-8c10-60bdf08a8f8f" class="bulleted-list"><li style="list-style-type:circle"><code>usermod -G superheros spiderman</code></li></ul><ul id="b5801a35-3e6e-42ed-944a-4237e35e1eed" class="bulleted-list"><li style="list-style-type:circle">The group of username <code>spiderman</code> which is <code>spiderman</code> by default gets a parent group called <code>superheros</code></li></ul><ul id="edc663b8-c756-42da-a50a-bb4f854dee41" class="bulleted-list"><li style="list-style-type:circle">If we indeed want to change the group of file/directory from <code>spiderman</code> to <code>superheros</code> , we need use <code>chgrp</code></li></ul></li></ul><ul id="81e95bf0-06fe-452d-9001-0866d5558290" class="bulleted-list"><li style="list-style-type:disc">chgrp (change the group of file)<ul id="747b2cf2-ccd1-4c66-8530-822baa1aed9a" class="bulleted-list"><li style="list-style-type:circle"><code>chgrp -R superheros directory_name</code></li></ul><ul id="1ec13a08-e374-4ad5-a4ee-ad135f5a4497" class="bulleted-list"><li style="list-style-type:circle">-R = change every file under <code>directory_name</code> directory to superheros</li></ul><p id="3731e550-9103-4656-9a7a-52d681fd7bfe" class="">
+</p></li></ul></details></li></ul></details></li></ul><ul id="562e8032-2c11-4b6f-919e-15ede67e75e6" class="toggle"><li><details open=""><summary>Files</summary><ul id="f4ad88e3-48e0-488a-a0a5-51fe938cb171" class="toggle"><li><details open=""><summary>/etc/passwd</summary><ul id="13e7de67-82dd-4aac-b1bb-e3623d56a951" class="bulleted-list"><li style="list-style-type:disc"><code>name:password:userid:groupid:description:homedirectory:shell</code></li></ul></details></li></ul><ul id="c7ba6b69-da5b-4c77-b9c6-3898cc2f47e9" class="toggle"><li><details open=""><summary>/etc/group</summary><ul id="1549ab96-1a29-4916-8388-b5f95aa506b9" class="bulleted-list"><li style="list-style-type:disc"><code>groupname:grouppassword:groupid:groupmembers</code></li></ul></details></li></ul><ul id="42cf6c1e-55a5-4497-9e1f-288ac783c7b9" class="toggle"><li><details open=""><summary>/etc/shadow</summary><ul id="3d8075cb-d026-485f-9868-de3f0f8d2f7a" class="bulleted-list"><li style="list-style-type:disc"><code>username:encrypted_password:days_since_lastpassword_change_absolute_from_epoch_time:minimum_number_days_before_user_can_change_password:maximum_number_of_days_before_password_change:days_for_warning:number_of_days_after_password_expirs_that_account_disabled</code></li></ul><ul id="bf06349f-2bbb-489d-b69d-db510850b9d4" class="bulleted-list"><li style="list-style-type:disc">For changing above defaults, use <code>/etc/login.defs</code></li></ul><ul id="c0d42226-5287-478e-9311-d289bdeaa3d0" class="bulleted-list"><li style="list-style-type:disc">For changing for a particular user, use <code>chage</code></li></ul><ul id="da99576c-82e8-4e07-8eca-3b1593923379" class="bulleted-list"><li style="list-style-type:disc">has encrypted password as a second entry, if no password then the password for the user is not yet created</li></ul><ul id="9e875841-dbc7-4655-9ae6-b3e30627944c" class="bulleted-list"><li style="list-style-type:disc">password expiry details</li></ul><ul id="686f31a7-2039-48eb-ad90-9d9e104eb3ec" class="bulleted-list"><li style="list-style-type:disc">password length details</li></ul></details></li></ul></details></li></ul><ul id="71440682-9e27-4d64-9be0-ae420097224c" class="toggle"><li><details open=""><summary>Create password</summary><ul id="880f0e60-52db-4f5b-8359-0dc20c994605" class="bulleted-list"><li style="list-style-type:disc"><code>passwd &lt;username</code>&gt;</li></ul></details></li></ul><ul id="16c1e592-d2f0-408b-b947-c927e597bb48" class="toggle"><li><details open=""><summary>Password age</summary><ul id="fc697a74-2d33-42c2-a666-d09f2e278d31" class="bulleted-list"><li style="list-style-type:disc"><code>chage</code> - to change the age of password<ul id="f3fa3725-16a1-4b0f-a20f-0f0bf1a62695" class="bulleted-list"><li style="list-style-type:circle">-d = Last password change, days since epoch time that password was last changed</li></ul><ul id="51e428d5-965a-43b7-9f02-3221c1733d2e" class="bulleted-list"><li style="list-style-type:circle">-m = The minimum number of days required between password changes</li></ul><ul id="eb2c0432-25a7-4079-9d03-ffc42d8291c3" class="bulleted-list"><li style="list-style-type:circle">-M=The maximum number of days the password is valid</li></ul><ul id="afa4ded7-b096-4e05-abcf-180506eac656" class="bulleted-list"><li style="list-style-type:circle">-W=The number of days before the password expirty that the user is warned</li></ul><ul id="960eb8b9-46e3-4069-8566-c047ee0b57f2" class="bulleted-list"><li style="list-style-type:circle">-I=The number of days after password expirty that the user is active</li></ul><ul id="84317816-337a-4311-b783-240056cf0466" class="bulleted-list"><li style="list-style-type:circle">-E=Days since epoch time that account is disabled – abosolute date specifigying when the login may no longer be used. </li></ul></li></ul><ul id="de72724b-8945-4102-8b84-1e2f092817e3" class="bulleted-list"><li style="list-style-type:disc">Not used to change any user account setting – for that you use <code>usermod</code>command. This is just for password aging policy for a specific user</li></ul><ul id="adc2d3d8-1f85-4c7e-8bab-d1beba6fab22" class="bulleted-list"><li style="list-style-type:disc">For chaning the defaults of password aging policy, use <code>/etc/login.defs</code>file. </li></ul><ul id="7a332844-a54e-45f7-836d-0cbd34237922" class="bulleted-list"><li style="list-style-type:disc">File: <code>/etc/login.defs</code> (login <span style="border-bottom:0.05em solid"><em>defaults</em></span> file)<ul id="046625c5-8713-4924-a73e-8f6a2a090f6c" class="bulleted-list"><li style="list-style-type:circle">PASS_MAX_DAYS</li></ul><ul id="0d7ad6e1-730f-406a-9d12-d9dd507d554d" class="bulleted-list"><li style="list-style-type:circle">PASS_MIN_DAYS</li></ul><ul id="4ad830e9-5641-4dc8-9b4c-43d34eacc62a" class="bulleted-list"><li style="list-style-type:circle">PASS_MIN_LEN</li></ul><ul id="59ab87c5-8dcc-4c9a-b0e8-e8bc979b30ae" class="bulleted-list"><li style="list-style-type:circle">PASS_WARN_AGE</li></ul></li></ul><p id="746c12bf-7a3f-4a23-a573-cdefbd945e1d" class="">
+</p></details></li></ul><ul id="10ebcb3d-9670-47a3-a5dd-ba2247c0a9b9" class="toggle"><li><details open=""><summary>Switch User (<code>su</code>)</summary><ul id="1b2ed2b6-dc65-4544-958d-f6e2a3bc6dbd" class="bulleted-list"><li style="list-style-type:disc"><code>su - user_name</code> (gets into the user’s default directory)</li></ul><ul id="16b67660-d7cd-4845-b07e-ef05e59ed975" class="bulleted-list"><li style="list-style-type:disc"><code>su user_name</code> (gets into the same directory)</li></ul><ul id="f4a0541f-1885-457c-85ea-9663ef3d64e4" class="bulleted-list"><li style="list-style-type:disc"><code>su -</code> = become root</li></ul></details></li></ul><ul id="fbcc3045-e7ca-42ab-9627-02acdf093741" class="toggle"><li><details open=""><summary>Sudoers </summary><ul id="269e9913-3785-4cb3-9859-53fff2ae91c7" class="toggle"><li><details open=""><summary>File <code>/etc/sudoers</code></summary></details></li></ul><ul id="da73fece-9689-4c72-b3f5-e1a5e95e5f79" class="toggle"><li><details open=""><summary><code>wheel</code> group can give that to ALL users</summary></details></li></ul><ul id="bf34b216-ed68-4920-bfe0-2e9b47a91f18" class="toggle"><li><details open=""><summary>You can add per users as well in that file, below root</summary></details></li></ul><ul id="c53f7f38-efb8-4826-af67-0857666b929e" class="toggle"><li><details open=""><summary>Command to a user in a wheel group</summary><ul id="9b861824-07b8-493d-844d-9ef8a6ca1220" class="bulleted-list"><li style="list-style-type:disc"><code>usermod -aG wheel &lt;user_name&gt;</code></li></ul></details></li></ul><ul id="2a8586e6-9284-4628-bb7e-52d761941e15" class="bulleted-list"><li style="list-style-type:disc">command to verify: <code>sudo dmidecode</code><ul id="9764d576-003d-495b-9d21-f4e28aaeb8aa" class="bulleted-list"><li style="list-style-type:circle">can’t run this command without sude access</li></ul></li></ul></details></li></ul></details></li></ul><ul id="2f4e59df-d985-4e3a-a002-a40f46e9dee7" class="toggle"><li><details open=""><summary><mark class="highlight-teal">Control access to files → 24Min</mark></summary><ul id="563e97f0-5027-4534-9c5f-b0f20e862654" class="toggle"><li><details open=""><summary>File Permissions</summary><ul id="43d92a19-6485-455a-b4c6-2b62e93441ca" class="bulleted-list"><li style="list-style-type:disc">Command: <code>chmod</code></li></ul><ul id="56eb7924-9b22-4cf2-a3e3-d0d619e8cf49" class="bulleted-list"><li style="list-style-type:disc">-<mark class="highlight-orange">rwx</mark><mark class="highlight-brown">rwx</mark><mark class="highlight-blue">rwx</mark>.<ul id="8d4d958f-2bc5-4358-b000-7a286f1f9aa6" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-orange">User</mark>, <mark class="highlight-brown">group</mark>, <mark class="highlight-blue">others</mark></li></ul><ul id="787acde0-4be7-4890-a63b-16f15112348e" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-orange">-u</mark>, <mark class="highlight-brown">-g</mark>, <mark class="highlight-blue">-o</mark></li></ul><ul id="768030f2-924e-441c-832c-0ab843796a28" class="bulleted-list"><li style="list-style-type:circle">-a = for everyone</li></ul></li></ul><ul id="1050019d-ee44-40a8-88c7-9615be54bb6f" class="bulleted-list"><li style="list-style-type:disc">Rmove the write permissions of the &lt;group&gt;<ul id="97380b64-7bee-40f6-a9f2-bc43ce678236" class="bulleted-list"><li style="list-style-type:circle"><code>chmod g-w &lt;file_name&gt;</code></li></ul></li></ul><ul id="7206d021-98bd-4f22-88bd-cff2da7ea84e" class="bulleted-list"><li style="list-style-type:disc">Remove read permissions for every user<ul id="9d414c6f-2450-404a-a0f9-3dfb58f170c4" class="bulleted-list"><li style="list-style-type:circle"><code>chmod a-r &lt;file_name&gt;</code></li></ul></li></ul><ul id="56edfbe7-bcfb-49bb-aef4-6cc7d283928d" class="bulleted-list"><li style="list-style-type:disc">Add the write permission for the group of the file<ul id="14f763a2-fcff-4577-986d-081dffd1b0bd" class="bulleted-list"><li style="list-style-type:circle"><code>chmod g+w &lt;file_name&gt;</code></li></ul></li></ul><ul id="4d08ba9d-2aaf-4fed-9544-a03fd8e161a4" class="bulleted-list"><li style="list-style-type:disc">Directory must have <code>x</code>permissions – for us to be able to the directory</li></ul></details></li></ul><ul id="2d5a5450-9c9c-494c-abb4-51be9fe49422" class="toggle"><li><details open=""><summary>File ownership</summary><ul id="d47d7223-310f-4ead-babc-b49e60bf25b8" class="bulleted-list"><li style="list-style-type:disc">Directory level permissions are necessary for editing, creating, or deleting files in that directory</li></ul><ul id="de8ef8cb-92c3-4a44-849d-c1c068f9d8e5" class="bulleted-list"><li style="list-style-type:disc">User level and group level</li></ul><ul id="0cca5688-7099-47c8-b521-215eeb2cf367" class="bulleted-list"><li style="list-style-type:disc"><code>chown</code> - changes the ownership of the file<ul id="40001cc2-8889-4c07-a588-207a68d3046d" class="bulleted-list"><li style="list-style-type:circle"><code>chown &lt;user_name&gt; &lt;file/directory&gt;</code></li></ul></li></ul><ul id="57f2f26c-1ca3-4b72-867c-b0b0974231bc" class="bulleted-list"><li style="list-style-type:disc"><code>chgrp</code> - changes the group ownership of the file<ul id="b1cb8647-9330-4ac9-a8de-3061f94aa3ad" class="bulleted-list"><li style="list-style-type:circle"><code>chgrp &lt;group_name&gt; &lt;file/directory&gt;</code></li></ul></li></ul></details></li></ul></details></li></ul><ul id="f417e384-589d-4436-9d86-69106e806333" class="toggle"><li><details open=""><summary><mark class="highlight-teal">Monitor and mange Linux processes → 34Min</mark></summary><ul id="b86af66c-d2f5-41ea-a14a-ea18828881e0" class="bulleted-list"><li style="list-style-type:disc">Processes and Jobs terminology<ul id="56d7973a-891c-4ce6-b860-7d0179f5386a" class="bulleted-list"><li style="list-style-type:circle">Application = Service, a program that runs (e.g. Word in windows, NTP, Apache in Linux)</li></ul><ul id="01e5808a-0a71-451d-9970-16795013438c" class="bulleted-list"><li style="list-style-type:circle">Script = Commands (<code>useradd</code>, <code>cd</code>, <code>pwd</code>, etc.), applications are run with it</li></ul><ul id="4b016eb4-8066-4197-a0e7-98ec818863de" class="bulleted-list"><li style="list-style-type:circle">Process = when Application is started, it generates process id</li></ul><ul id="25f62a47-00d9-49dd-aa34-2181220a409a" class="bulleted-list"><li style="list-style-type:circle">Daemon = something that continuously run in the backround (keeps listening to incoming or outgoing traffic)</li></ul><ul id="94f921bd-802a-4506-a848-51d32729a5e1" class="bulleted-list"><li style="list-style-type:circle">Threads = A process can have a multiple thread </li></ul><ul id="c9a5426b-e561-4327-847b-8846954beb76" class="bulleted-list"><li style="list-style-type:circle">Job = created by a scheduler to run those applications/serivces</li></ul></li></ul><ul id="abe5f4a2-5600-4fc1-8b42-5095c8c8b8bf" class="toggle"><li><details open=""><summary>Manage Processes</summary><ul id="41fd222c-a31a-4069-bc73-244f90c7fdc8" class="bulleted-list"><li style="list-style-type:disc"><code>df -h </code><ul id="6f773e91-6a33-44e4-9f80-ad9e29a59160" class="bulleted-list"><li style="list-style-type:circle">df = report file system disk usage space</li></ul><ul id="2530eded-5fe4-4284-b1b3-c9cefd076081" class="bulleted-list"><li style="list-style-type:circle"><code>devtmpfs</code> and <code>tmpfs</code> are swap usage</li></ul></li></ul><ul id="55237c7b-526d-4576-a86e-2d93aff87366" class="bulleted-list"><li style="list-style-type:disc"><code>du</code><ul id="7523c501-12af-4f2f-ae54-b0470be72b21" class="bulleted-list"><li style="list-style-type:circle"><code>du -BM / | sort -nr | more</code><ul id="63cbd9d8-c228-450a-bf8a-a1d19b7d8609" class="bulleted-list"><li style="list-style-type:square">Get size (B) in Megabytes (M) of <code>/</code> directory, sort in reverse order</li></ul></li></ul></li></ul><ul id="db6a5cc1-5ad7-46ad-8386-b2dbd854e848" class="bulleted-list"><li style="list-style-type:disc"><code>uptime</code> –&gt; load metric can be useful if your system is slow</li></ul><ul id="bd3672b4-deb5-4752-b0eb-971743309f1a" class="bulleted-list"><li style="list-style-type:disc"><code>top</code><ul id="ccf78c3f-9502-48b9-bd4c-2df8988fbdb2" class="bulleted-list"><li style="list-style-type:circle">First line same as uptime</li></ul><ul id="313e1dad-6953-4bac-8cac-9490628c04d0" class="bulleted-list"><li style="list-style-type:circle">Tasks details</li></ul><ul id="bca81e58-a063-4036-b6c3-ed22f2fa63b8" class="bulleted-list"><li style="list-style-type:circle">CPU → if it’s 95%, something is wronng, look for process</li></ul><ul id="772eca94-acbf-4b7d-9d8d-cdce46d23327" class="bulleted-list"><li style="list-style-type:circle">Memory details</li></ul><ul id="620583de-a0f3-442d-95ef-8784e6fe01e0" class="bulleted-list"><li style="list-style-type:circle">Swap details</li></ul><ul id="765fa817-c709-46d4-9245-f4e8289c7bf4" class="bulleted-list"><li style="list-style-type:circle">Columns: <ul id="e5b44bb5-8e3f-4a31-81e3-f89b2c1f06e6" class="bulleted-list"><li style="list-style-type:square">PID: Process ID</li></ul><ul id="4b9f5420-42ee-4d10-975a-7e18e767d0bd" class="bulleted-list"><li style="list-style-type:square">USER: The owner of the process</li></ul><ul id="65c48b59-135b-465a-a910-d51a620a519c" class="bulleted-list"><li style="list-style-type:square">PR: Process Priority</li></ul><ul id="5cc7b33e-f1a5-40d0-b8a6-fa7fd7be3b81" class="bulleted-list"><li style="list-style-type:square">NI: The nice value of the process</li></ul><ul id="1511bf6f-98d5-41b8-ab4a-364c8585df81" class="bulleted-list"><li style="list-style-type:square">VIRT: Amout of virtual memory used by the process</li></ul><ul id="ca474e6b-f30c-46f7-9d09-2955eba86fa6" class="bulleted-list"><li style="list-style-type:square">RES: Amout of resident memory used by the process</li></ul><ul id="54639f7d-91a3-4d6e-9458-a5f168d62756" class="bulleted-list"><li style="list-style-type:square">SHR: Amout of shared memory used by the process</li></ul><ul id="9cb7b88b-4e6f-4883-9e10-b5f3326fbf00" class="bulleted-list"><li style="list-style-type:square">S: Status of the process ((sleeping, running, etc)</li></ul></li></ul></li></ul><ul id="b116f7f2-fc9f-44ec-a07d-37627b9674f3" class="bulleted-list"><li style="list-style-type:disc"><code>free</code> → memory information<ul id="41367910-7d63-45bc-941e-76a49a556260" class="bulleted-list"><li style="list-style-type:circle"><code>free -m</code> (for usage in MB)</li></ul></li></ul><ul id="8a6cf4f5-0df0-4b00-903f-668e2b743885" class="bulleted-list"><li style="list-style-type:disc"><code>lsof</code> → List of open files<ul id="206dfd32-3d6a-4dc3-9a9d-a1a5e3274615" class="bulleted-list"><li style="list-style-type:circle">Some process can have these files open even if they exit</li></ul></li></ul><ul id="7279993f-b6fc-44ba-ad10-0a83bd84541b" class="bulleted-list"><li style="list-style-type:disc"><code>tcpdump</code> → network activity<ul id="00a3b553-2f4d-4f0e-8f7a-8ffeb4179cfe" class="bulleted-list"><li style="list-style-type:circle"><code>tcpdump -i &lt;interface_name&gt;</code></li></ul><ul id="e0d5e0c9-ca76-4976-8725-9b475c11ceec" class="bulleted-list"><li style="list-style-type:circle">What is coming, what is going out, etc.</li></ul><ul id="4f207570-aa78-486a-9868-84532e4d838d" class="bulleted-list"><li style="list-style-type:circle">Run <code>ifconfig</code> to find your interface<ul id="8623d344-ac45-4b29-9ca6-175a4916ecbe" class="bulleted-list"><li style="list-style-type:square"><code>lo</code>-&gt; local</li></ul><ul id="ecc0b7d4-2904-4ed4-aba2-9f8138603495" class="bulleted-list"><li style="list-style-type:square"><code>vir*</code> → virtual interface</li></ul><ul id="88a78971-53bc-41cf-9517-01c840682619" class="bulleted-list"><li style="list-style-type:square"><code>eth*</code> → <strong>Look for this</strong></li></ul></li></ul></li></ul><ul id="8a3ec72b-a906-4731-bd7c-a06feb9d072f" class="bulleted-list"><li style="list-style-type:disc"><code>netstat</code> → Network Statistics, router, gateway<ul id="5778b6a0-43fe-4e90-b8be-dd2044b35a6a" class="bulleted-list"><li style="list-style-type:circle"><code>netstat -rnv</code></li></ul></li></ul><ul id="b05e7b5d-cd19-4359-a3ae-c0a59ad690ff" class="bulleted-list"><li style="list-style-type:disc"><code>ps</code> → Process Status, snapshot of processes<ul id="b220792f-b159-46f0-9922-e4e0f98b272e" class="bulleted-list"><li style="list-style-type:circle"><code>ps -ef | more</code></li></ul><ul id="bf5f66d8-a592-4e13-aa40-3776fd7ac0c0" class="bulleted-list"><li style="list-style-type:circle"><code>ps -ef | grep &lt;process_name&gt;</code></li></ul></li></ul><ul id="16a05d49-9457-4126-9499-8cfab7c23be9" class="bulleted-list"><li style="list-style-type:disc"><code>kill</code><ul id="525d2df0-5d4a-464c-b069-37b0a42cada2" class="bulleted-list"><li style="list-style-type:circle"><code>kill &lt;process_id&gt; </code> → Kills gracefully</li></ul><ul id="0bcc62bd-c1ba-46ba-9e38-4c6a422c21b9" class="bulleted-list"><li style="list-style-type:circle"><code>kill -9 &lt;process_id&gt;</code> → Kills harshly, directly. </li></ul></li></ul><ul id="84722489-6277-4449-9fc7-9045e8b8d9bc" class="bulleted-list"><li style="list-style-type:disc"><code>vmstat</code>, <code>iostat</code>, <code>ifstat</code>, etc.</li></ul></details></li></ul></details></li></ul><ul id="a9692696-25ac-435c-afb9-0f9d8b3f42ca" class="toggle"><li><details open=""><summary><mark class="highlight-teal">Control services and daemons → 20Min</mark></summary><ul id="086ace86-a4ad-4ace-b72b-1b6a67d45aeb" class="toggle"><li><details open=""><summary>Commands</summary><ul id="9c2f2993-105c-4ee9-8144-ce921f9aee10" class="bulleted-list"><li style="list-style-type:disc"><code>systemctl --version</code> → Check if <strong>systemd</strong> installed in your system</li></ul><ul id="c7d0a670-c913-4917-adf9-16ee7bd8741f" class="bulleted-list"><li style="list-style-type:disc"><code>ps -ef | grep systemd</code> → Check if <strong>systemd</strong> is running, first process has <strong>PID 1</strong></li></ul><ul id="92740535-a755-4e43-a48c-84f04bb684ef" class="bulleted-list"><li style="list-style-type:disc"><code>systemctl --all</code> → Check all running services</li></ul><ul id="ab444d29-80ba-47e6-ba07-a83eab95c0b7" class="bulleted-list"><li style="list-style-type:disc"><code>systemctl status|start|stop|restart application.service</code> → To check the status, start, stop, and restart a service<ul id="149a9be0-528d-4e07-9503-cfd545722c15" class="bulleted-list"><li style="list-style-type:circle"><code>systemctl status firewalld</code></li></ul><ul id="a63f966a-a245-4da6-9885-86a1d422af7f" class="bulleted-list"><li style="list-style-type:circle"><code>systemctl start firewall</code></li></ul></li></ul><ul id="3e7ff899-e9b0-451d-a75f-a7ecdef1c5ec" class="bulleted-list"><li style="list-style-type:disc"><code>systemctl reload application.service</code> → To reload the configuration of a service. <ul id="85fa8f74-4c4e-4e31-83e4-7f3f8de202fa" class="bulleted-list"><li style="list-style-type:circle">Reload is not going to impact the service, start/stop will impact the service</li></ul></li></ul><ul id="9672cdba-a1fa-4e54-84d2-b3ef7e043ff5" class="bulleted-list"><li style="list-style-type:disc"><code>systemctl enable|disable application.service</code> → To enable or disable a service at boot time</li></ul><ul id="b029ec48-8f78-4129-bd9b-c6e772432088" class="bulleted-list"><li style="list-style-type:disc"><code>systemctl mask|unmask application.service</code> → To enable or disable a service completely (at boot or manually)<ul id="c44c63f5-20bd-463a-9294-786926259b8f" class="bulleted-list"><li style="list-style-type:circle">Boot time will do the same excpet, if <em>service B</em> is requested when the boot is disabled for <em>service A</em>, it will start <em>service A</em> even if it’s disabled</li></ul><ul id="ed8bbaa8-ee86-414b-9126-268d2ddefc59" class="bulleted-list"><li style="list-style-type:circle">If <code>unmask</code> then no matter what, <em>service A</em> will never start</li></ul></li></ul></details></li></ul><ul id="a26f9aab-ad89-45a8-871b-cac0e9b3f9e6" class="bulleted-list"><li style="list-style-type:disc">service and process continuously in backround → daemons</li></ul><ul id="a6769a46-bf3c-4291-91f7-0bad2dcd5c97" class="bulleted-list"><li style="list-style-type:disc"><strong>services are controlled by </strong><code><strong>systemctl</strong></code><strong> → System Control</strong></li></ul><ul id="e5bad18e-0f0b-4c11-8aa4-f7e0210a9e2d" class="bulleted-list"><li style="list-style-type:disc"><code>systemctl</code> is a <strong>systemd</strong> utility that is responsible for controlling the systemd system and service manager<ul id="c22def3c-2442-4a95-9bdb-9a69fb25b194" class="bulleted-list"><li style="list-style-type:circle"><strong>systemd</strong> is is a collection of  system management daemons, utilities, and libraries which serves as replacement of System V init.d (init daemon)</li></ul><ul id="a9af5526-959d-4dec-a7e7-b690d2925fe7" class="bulleted-list"><li style="list-style-type:circle"><strong>systemd is a parent process of most of the daemons</strong></li></ul></li></ul><ul id="8a497c7c-d744-417c-8532-4860d43d594f" class="bulleted-list"><li style="list-style-type:disc">Number of packages installed on the system<ul id="acdfc3e1-d9d7-4a14-a3b2-766e5ec3c7b8" class="bulleted-list"><li style="list-style-type:circle"><code>rpm -qa | wc -l</code> → refer <a href="https://www.notion.so/RedHat-Certified-System-Administrator-7f5affdd179a4c5e97a39f09aff4a66e">here</a> for command description </li></ul></li></ul></details></li></ul><ul id="c85af2d0-e0ee-4045-b98c-19f72f660573" class="toggle"><li><details open=""><summary><mark class="highlight-teal">Configure and secure SSH → 29Min</mark></summary><ul id="58e3e802-df57-4038-8a7f-e9c70f0c1c87" class="toggle"><li><details open=""><summary>What is a Shell</summary><ul id="7e4c69a7-8dee-464f-a957-0d51baefae7a" class="bulleted-list"><li style="list-style-type:disc">Hardware → Kernel → Shell (<em>bash, csh, ksh</em>) → Utilities (<em>cp, pwd, ls</em>)</li></ul><ul id="2619d204-8c9b-4e7e-bb4f-899454ee9813" class="bulleted-list"><li style="list-style-type:disc">Open SSH is a package, runs by <code>sshd</code> service on port <code>22</code></li></ul></details></li></ul><ul id="3846cb2d-2d1a-4e87-a0b1-f8ab63c88152" class="bulleted-list"><li style="list-style-type:disc">SSH = Always encrypted</li></ul><ul id="f13ae1b5-f78d-4b91-b581-97bc1cddede3" class="bulleted-list"><li style="list-style-type:disc">Following configurations for security<ul id="18752878-8497-4ba0-a9fe-09e09453786c" class="toggle"><li><details open=""><summary>User timeout</summary><ul id="afffb5b5-3bcb-47c6-ad85-fb205fd90b3f" class="bulleted-list"><li style="list-style-type:disc">Always copy the file of config file before editing</li></ul><ul id="1837f042-1fd9-48bb-be88-e91fa24ea400" class="bulleted-list"><li style="list-style-type:disc">Idle Timeout Interval</li></ul><ul id="c9819ba1-c6c4-4214-af94-60b615f74aaa" class="bulleted-list"><li style="list-style-type:disc">Edit <code>/etc/ssh/sshd_config</code> file (with root)<pre id="304a810c-98fd-4dba-894a-ac016a803ed8" class="code"><code># uncomment (or add if not found) following lines
+# timeout_interval = ClientAliveInterval * ClientAliveCountMax
+    # except when ClientAliveCountMax is 0
+    # in that case system will log you out right after first 
+    #.   interval without any warning
+ClientAliveInterval 600 # 10 minutes
+ClientAliveCountMax 0 # send message how many times</code></pre></li></ul><ul id="4627a32c-1fb1-4434-8ab8-0660413a533f" class="bulleted-list"><li style="list-style-type:disc"><code>systemctl restart sshd</code> </li></ul></details></li></ul><ul id="5692880c-7a70-4ea3-8139-9bef4d4acbdc" class="toggle"><li><details open=""><summary>Disable root login</summary><ul id="1f5392df-572a-43d0-949e-ba7e7631b3ff" class="bulleted-list"><li style="list-style-type:disc"><code>/etc/ssh/sshd_config</code></li></ul><ul id="acac3841-bd00-4cab-b7a8-ca657cfd1037" class="bulleted-list"><li style="list-style-type:disc">Find <code>PermitRootLogin</code> to <code>no</code></li></ul><ul id="782c2c5e-2eb2-4b98-9e5e-d90d828131e0" class="bulleted-list"><li style="list-style-type:disc">Restart the daemon</li></ul></details></li></ul><ul id="da0f1be2-78f7-4b4d-86d1-5159c5cb9e49" class="toggle"><li><details open=""><summary>Disable Empty Passwords</summary><ul id="944dee7d-bb15-4dd7-95f9-3b0f6af085bb" class="bulleted-list"><li style="list-style-type:disc"><code>PermitEmptyPasswords no</code> → Uncomment and restart the daemon</li></ul></details></li></ul><ul id="e4058099-120c-4aaf-a89a-20e9ef623b90" class="toggle"><li><details open=""><summary>Limit user’s SSH Access</summary><ul id="6541e943-f291-4e29-8f82-8cc6b1753e46" class="bulleted-list"><li style="list-style-type:disc"><code>/etc/ssh/sshd_config</code></li></ul><ul id="94c7f413-5202-448c-b7fa-72a9c6fd90aa" class="bulleted-list"><li style="list-style-type:disc">Add following lines</li></ul><pre id="5a3304c2-1f95-4207-b028-b95586b699fa" class="code"><code># allow following users
+AllowUsers &lt;user1&gt; &lt;user2&gt; </code></pre></details></li></ul><ul id="decc8ce7-0a46-4f5b-96fa-d066416ae758" class="toggle"><li><details open=""><summary>Use different SSH Port</summary><ul id="beaa5bd3-4c06-4559-9385-86dd5da41859" class="bulleted-list"><li style="list-style-type:disc">Edit <code>/etc/ssh/sshd_config</code></li></ul><ul id="4423e5d8-2b05-4ee7-8180-ba20bb47323a" class="bulleted-list"><li style="list-style-type:disc">Find <code>Port 22</code><ul id="61baa527-efde-4d5f-8fbd-20bb337d71d6" class="bulleted-list"><li style="list-style-type:circle"><strong>Make sure the port you are going to use is not used by anything</strong></li></ul><ul id="10f460cc-f0ed-4610-a3ca-6872bec16db5" class="bulleted-list"><li style="list-style-type:circle">Uncommend and put in the port number that you need</li></ul></li></ul></details></li></ul><ul id="b1800475-1a87-476c-96f5-31f2198c0199" class="toggle"><li><details open=""><summary>SSH Keys</summary><ul id="9a7f46c4-950e-49ee-b583-dc483727dd84" class="bulleted-list"><li style="list-style-type:disc">Configure SSH Keys<ul id="9bcb04d6-827d-4b06-a54e-f460dccd1071" class="bulleted-list"><li style="list-style-type:circle">Generate keys on <strong>client machine (don’t if already have)</strong><ul id="e2b127d2-f92d-48d7-a1e2-6ad9ad309103" class="bulleted-list"><li style="list-style-type:square">Check ~/.ssh/ files</li></ul><ul id="c6c2c540-4661-4d30-86cb-f27f577d93ca" class="bulleted-list"><li style="list-style-type:square">If <code>id_rsa.pub</code> is present, just copy</li></ul></li></ul><ul id="89352853-c309-491a-af6a-13125dfc2d80" class="bulleted-list"><li style="list-style-type:circle">Generate keys<ul id="c31ab969-0aea-42b5-acac-d0f77af1eca4" class="bulleted-list"><li style="list-style-type:square"><code>ssh-keygen</code></li></ul></li></ul><ul id="e224f429-2edc-4afe-b819-549b9d5065fb" class="bulleted-list"><li style="list-style-type:circle">Copy the Key to the server<ul id="c57e5f0f-335f-4350-a702-98cda477ef66" class="bulleted-list"><li style="list-style-type:square"><code>ssh-copy-id root@remote_server_ip</code></li></ul></li></ul><ul id="ef4821ac-4aaf-4517-baa4-cf143a9752fc" class="bulleted-list"><li style="list-style-type:circle">The keys are copied to servers’s ~/.ssh/authorized_keys</li></ul><ul id="f4252f1b-793c-4522-a0d8-a145c693f33e" class="bulleted-list"><li style="list-style-type:circle">Login and check</li></ul><ul id="a0e6f180-7def-422f-8d4e-d4ba343a97ac" class="bulleted-list"><li style="list-style-type:circle"></li></ul></li></ul></details></li></ul></li></ul><ul id="39343fdc-bad7-43c5-9145-4d1efbdd6723" class="bulleted-list"><li style="list-style-type:disc"><code>$ -&gt; normal user</code></li></ul><ul id="d7c7ab29-d873-4668-940a-205dd1de7768" class="bulleted-list"><li style="list-style-type:disc"><code># -&gt; root user</code></li></ul></details></li></ul><ul id="43c10c1c-32eb-4fad-8ae5-3549fdc69f07" class="toggle"><li><details open=""><summary><mark class="highlight-teal">Analyze and store logs → 25Min</mark></summary><ul id="61c090be-72d5-4525-b985-4d3ec25479fc" class="toggle"><li><details open=""><summary>Log Monitoring</summary><ul id="049ec26c-4093-4fae-a287-652347e8947a" class="bulleted-list"><li style="list-style-type:disc">Log directory : <code>/var/log</code><ul id="70cf5bd6-6430-4321-9ea0-d9b708fd6dd9" class="bulleted-list"><li style="list-style-type:circle">boot<ul id="f4d35745-aba0-4616-b11f-2877933a7be4" class="bulleted-list"><li style="list-style-type:square">When the system boots, what processes are starting up, etc.</li></ul></li></ul><ul id="1a9664c4-c5c3-46a5-be93-f59635352864" class="bulleted-list"><li style="list-style-type:circle">chronyd = NTP<ul id="8b37644f-f6b4-4375-844e-571236036640" class="bulleted-list"><li style="list-style-type:square">newer version of NTP service</li></ul><ul id="26cae1d2-936a-4054-a802-4cdff20daceb" class="bulleted-list"><li style="list-style-type:square">Any changes on service <code>chrony</code>, it will log</li></ul></li></ul><ul id="722d0146-f70f-4dda-91b2-8d38f857d653" class="bulleted-list"><li style="list-style-type:circle">cron<ul id="6c4b9b0d-bcd5-45b2-9145-d652c00307ef" class="bulleted-list"><li style="list-style-type:square">crontab logs</li></ul><ul id="5cc0c6cc-09d1-47a4-aaee-444c3a6d4a64" class="bulleted-list"><li style="list-style-type:square">Month Tiime, hostman, daemon, processid, user, command/entry associated with that cron</li></ul></li></ul><ul id="4e342f66-347d-4c54-884f-f6424613194f" class="bulleted-list"><li style="list-style-type:circle"><code>dmesg</code> → command to give the information about the hardware</li></ul><ul id="34ae11e9-3708-4d62-9d62-a8879a350f32" class="bulleted-list"><li style="list-style-type:circle">maillog<ul id="21040873-6033-4a39-aa20-61e8b41e4b99" class="bulleted-list"><li style="list-style-type:square">send mail service </li></ul></li></ul><ul id="df94ae14-9495-4c50-a06a-0a1e395c709a" class="bulleted-list"><li style="list-style-type:circle">secure<ul id="870433a0-17eb-4b32-b012-1b1873e344a3" class="bulleted-list"><li style="list-style-type:square">login and logout information</li></ul></li></ul><ul id="ad14a338-2fce-4a7a-8b55-0bfddc79d0d0" class="bulleted-list"><li style="list-style-type:circle">messages<ul id="979a7fa4-4d11-4a9b-9f36-011bc8492b48" class="bulleted-list"><li style="list-style-type:square">Very important, to monitor the system activity</li></ul><ul id="020e6924-23b8-453b-890b-3a0cf675d617" class="bulleted-list"><li style="list-style-type:square">Harware wise, application wise, process wise, goes here</li></ul></li></ul><ul id="42746f30-0f06-4bbe-9393-3e4b6e597f89" class="bulleted-list"><li style="list-style-type:circle">httpd<ul id="287c0188-3f75-483c-aab3-dba6d292d108" class="bulleted-list"><li style="list-style-type:square">Apache</li></ul></li></ul></li></ul></details></li></ul><ul id="05b2e363-ce71-4c34-ab70-3a27adc0205b" class="toggle"><li><details open=""><summary>System Time (<code>Cronyd</code>) – previsously it was NTP. Chronyd is newer. </summary><ul id="50b3647f-13f0-4e92-b546-4dda04ff22d5" class="bulleted-list"><li style="list-style-type:disc"><code>timedatectl</code> → Gives status, timezone, etc.</li></ul><ul id="90e7e591-5d3b-4317-8a3e-c59e74c57fbd" class="bulleted-list"><li style="list-style-type:disc"><code>timedatectl --help</code></li></ul><ul id="0da0ddf4-77e3-4f73-bced-f49671231205" class="bulleted-list"><li style="list-style-type:disc"><code>timedatectl list-timezones</code></li></ul><ul id="98df1cc0-8b5a-4209-a8f6-d8eb51e14aa3" class="bulleted-list"><li style="list-style-type:disc"><code>timedatectl set-timezone Asia/Kolkata</code></li></ul><ul id="77d18725-17c2-4ee3-9cd5-f6ceb3825246" class="bulleted-list"><li style="list-style-type:disc"><code>timedatectl set-time HH:MM:SS</code><ul id="0a65de6d-888f-4280-977d-561d0c92e2f2" class="bulleted-list"><li style="list-style-type:circle"><code>timedatectl set-time &#x27;2022-08-04 18:04:31&#x27;</code></li></ul></li></ul><ul id="50b183d0-441b-48e3-98a7-ea357f8f6897" class="bulleted-list"><li style="list-style-type:disc"><strong>Enable NTP Synchronization </strong><ul id="57a73529-a643-4d9c-878b-07e91213e296" class="bulleted-list"><li style="list-style-type:circle"><code>timedatectl set-ntp true</code></li></ul><ul id="e16676be-855c-4482-9621-cc034dee2fbd" class="bulleted-list"><li style="list-style-type:circle">Set up <code>chronydaemon</code> → Replaced <code>ntpdaemon</code></li></ul><ul id="f3c5e323-55a3-41cb-adab-b2df3502d7b2" class="bulleted-list"><li style="list-style-type:circle">Package: <code>chronyd</code></li></ul><ul id="a44120bb-225f-4a08-805c-8de5341f1d8d" class="bulleted-list"><li style="list-style-type:circle">configuration file = <code>/etc/chronyd.conf</code></li></ul><ul id="8820ca95-e170-4ca7-95cf-2ad39ae18d80" class="bulleted-list"><li style="list-style-type:circle">Log file = <code>/var/log/chrony</code></li></ul><ul id="17345906-4b1f-4c05-9e5f-fb626ededd07" class="bulleted-list"><li style="list-style-type:circle">Check if you have package:<ul id="bef6180d-2c5a-49a4-8e20-a33cd54a934e" class="bulleted-list"><li style="list-style-type:square"><code>rpm -qa | grep chrony</code></li></ul></li></ul><ul id="710c9022-8a08-4a60-85df-6903ed374845" class="bulleted-list"><li style="list-style-type:circle"><strong>Config file for the NTP</strong><ul id="223bc886-2a9c-474f-ac52-737b6673b538" class="bulleted-list"><li style="list-style-type:square"><code>vi /etc/chrony.conf</code><ul id="5498b5a6-7fdb-4183-b378-46e1774adc82" class="bulleted-list"><li style="list-style-type:disc">add line as: <ul id="5b3bca56-c08d-49d5-a438-e000b0f49acd" class="bulleted-list"><li style="list-style-type:circle"><code>server 0 &lt;server 1&gt; iburst</code>-&gt; verify this step</li></ul><ul id="8103fd83-ad86-40f9-9914-11e0667834cb" class="bulleted-list"><li style="list-style-type:circle"><code>systemctl restart chronyd</code></li></ul></li></ul></li></ul><ul id="623432cd-69e3-4d31-a008-53c21ad9af2a" class="bulleted-list"><li style="list-style-type:square">systemctl start chronyd<ul id="61e28517-e131-44b1-a0d6-97292c5a6dd4" class="bulleted-list"><li style="list-style-type:disc"><strong>Make sure that ntpd is not running</strong></li></ul><ul id="2a466e3f-4f2c-4702-83ba-054daf82bbbe" class="bulleted-list"><li style="list-style-type:disc"><code>systemctl status ntpd</code></li></ul></li></ul></li></ul><ul id="11014192-07ec-43b6-9f48-f34a2b48785f" class="bulleted-list"><li style="list-style-type:circle">What are sources? <ul id="222d5092-d4d2-44fa-a0c6-adf44ae9aa2e" class="bulleted-list"><li style="list-style-type:square">Type <code>chronyc</code><ul id="59caded3-2144-4046-a7fb-59f5175c47cb" class="bulleted-list"><li style="list-style-type:disc"><code>sources</code> → to get your NTP sources</li></ul><ul id="a031550f-8eca-4cbf-b47d-4f7fdbbad319" class="bulleted-list"><li style="list-style-type:disc"><code>help</code> → to see which commands are we using</li></ul></li></ul></li></ul><ul id="8ce5a91d-53ae-4be0-a2db-8447a162167e" class="bulleted-list"><li style="list-style-type:circle">To set time manually: <ul id="b22dff4e-7325-44a8-a979-57de6ed0b651" class="bulleted-list"><li style="list-style-type:square">First disable the NTP:<ul id="d799adca-233a-477e-9c84-1fe8e0067ec9" class="bulleted-list"><li style="list-style-type:disc"><code>timedatectl set-npt false</code></li></ul></li></ul><ul id="29d5cec8-29be-487f-afb0-21ea4c010606" class="bulleted-list"><li style="list-style-type:square">Set date-time:<ul id="debaa40c-b64c-4c53-9a39-993a13860681" class="bulleted-list"><li style="list-style-type:disc"><code>timedatectl set-time &quot;2022-08-05 15:59:33&quot;</code></li></ul></li></ul></li></ul></li></ul></details></li></ul></details></li></ul><ul id="44fa2761-edec-407e-bc11-493a67d65914" class="toggle"><li><details open=""><summary><mark class="highlight-teal">Manage networking → 33Min</mark></summary><ul id="b0a86b28-b7ab-4408-85d6-3db87d369e2f" class="toggle"><li><details open=""><summary>Static vs Dynamic IP</summary><ul id="272ed800-70ae-47e1-a580-12582232ccdf" class="toggle"><li><details open=""><summary>Commands</summary><ul id="e0a002cd-e287-4b92-bd14-0f941eea7912" class="bulleted-list"><li style="list-style-type:disc"><code>ifconfig</code> (interface configuration) → <code>ip addr</code> (newer)<ul id="7d2c453b-9c9c-4aa1-b37f-59faca167130" class="bulleted-list"><li style="list-style-type:circle">Three interfaces <ul id="56a6a22d-8a63-421d-912f-c3be8848b1e8" class="bulleted-list"><li style="list-style-type:square"><code>enps03</code> → for external communication</li></ul><ul id="cf0debc4-e970-4458-a951-fd36dbf6b1a9" class="bulleted-list"><li style="list-style-type:square"><code>lo</code> → Always same IP, processes inside the computer they use this interface to communicate with each other (loopback device)</li></ul><ul id="96eaee0c-6b8d-43fc-9eb4-b266d4ee38a7" class="bulleted-list"><li style="list-style-type:square"><code>virtualbridge</code> → Virtual adapter</li></ul></li></ul></li></ul></details></li></ul><ul id="4f8f5d5c-121c-4e7d-b1e1-9379cff2dfe4" class="bulleted-list"><li style="list-style-type:disc">IP → Internet Protocol</li></ul><ul id="e91b65ce-3b5e-435f-af7d-35d55092cac7" class="bulleted-list"><li style="list-style-type:disc">Private IP → Local network (internal communication)</li></ul><ul id="859665b2-b432-407d-9ac7-a362cc9cbd96" class="bulleted-list"><li style="list-style-type:disc">Public IP → Global IP (external communication)</li></ul><ul id="e6acd785-14f7-4513-952a-5dfda52dee3d" class="bulleted-list"><li style="list-style-type:disc">Static IP → IP that does not change with reboot, manually assigned</li></ul><ul id="069e9aad-9b6c-4554-b7a5-7e6d06fac0dc" class="bulleted-list"><li style="list-style-type:disc">DHCP → Dynamic Host Control Protocol</li></ul></details></li></ul><ul id="f0df3538-f467-4534-a45f-98a22dac6ff3" class="toggle"><li><details open=""><summary>OS network components (Network interfaces, subnet mask, gateway, MAC address, etc.)</summary><ul id="c5f5336c-11ac-4eee-8ea0-5289f5475d27" class="bulleted-list"><li style="list-style-type:disc">Network Interface <ul id="33f697f2-6bb3-4005-9c06-8c162cc28ad8" class="bulleted-list"><li style="list-style-type:circle">In physical computers, the ethernet ports connected to network cards gives you network interface</li></ul><ul id="1ddea459-790d-489d-8013-aa2cc23facdd" class="bulleted-list"><li style="list-style-type:circle"><code>ifconfig</code>→ look for <strong>inet </strong>in </li></ul></li></ul><ul id="af06f348-27ad-421f-b151-8a07e2ba1b3b" class="bulleted-list"><li style="list-style-type:disc">MAC address <ul id="de6959fb-9506-4910-bc16-d460e66d7622" class="bulleted-list"><li style="list-style-type:circle">Hard coded that never chagnes → assigned to interface</li></ul><ul id="cc29414a-a814-4911-a766-d128e349482b" class="bulleted-list"><li style="list-style-type:circle"><code>ifconfig</code> → look for <strong>ether</strong> in <a href="https://www.notion.so/RedHat-Certified-System-Administrator-7f5affdd179a4c5e97a39f09aff4a66e">interface</a> for external communication (<code>enp0s3</code>)</li></ul><ul id="30299a2e-5eec-4ddf-9b9e-66e40f42fb54" class="bulleted-list"><li style="list-style-type:circle">Assigned by manufacturer when the ethernet card is built</li></ul></li></ul><ul id="5f0133a3-5f36-43aa-af4f-fd1e58f8e3b2" class="bulleted-list"><li style="list-style-type:disc">Subnet Mask<ul id="e8fbdfe8-7f85-4032-abce-bd9026501270" class="bulleted-list"><li style="list-style-type:circle">look for <strong>netmask </strong>in <code>ifconfig</code> output, it is your subnetmask<ul id="0e07b767-4336-4d51-a65b-3aa9536d148a" class="bulleted-list"><li style="list-style-type:square">Allows/control the traffic</li></ul></li></ul><ul id="c1a0a238-8cbd-4210-9f24-5bc4eb0c7803" class="bulleted-list"><li style="list-style-type:circle">A set of IPs</li></ul></li></ul><ul id="31b3c636-4161-4c6c-a77f-44f80b29b2ff" class="bulleted-list"><li style="list-style-type:disc">Gateway<ul id="1ef39364-b7d5-4628-8a46-2d3632eeec41" class="bulleted-list"><li style="list-style-type:circle"><code>netstat -rnv</code><ul id="526cb4db-ec3b-4fec-93ab-037ba655ddd9" class="bulleted-list"><li style="list-style-type:square">Anywhere you want to go outside your computer, you must go through the gateway</li></ul></li></ul><ul id="2ef88c92-7a71-43f0-af83-859370213bd7" class="bulleted-list"><li style="list-style-type:circle">An IP assigned to your IP, allows to take your traffic to outside the local network</li></ul></li></ul><ul id="a9212b56-7b19-4a9b-adfd-058171aaf6dd" class="bulleted-list"><li style="list-style-type:disc">DNS (Domain Name System)<ul id="b1160a81-c95c-4e19-bad1-76b8e2ce608e" class="bulleted-list"><li style="list-style-type:circle"><code>nslookup www.google.com</code><ul id="7ed52e93-3ebe-40c2-bd3e-a28eea895982" class="bulleted-list"><li style="list-style-type:square">Look up the IP of a host</li></ul><ul id="0c88587b-4ba2-4d70-a46b-8c9f8b683f0b" class="bulleted-list"><li style="list-style-type:square">Also can see your DNS server here (<em>Server</em>)</li></ul><ul id="089984b9-4042-4333-8caf-4509bcb90740" class="bulleted-list"><li style="list-style-type:square">In local environment, local gateway is usually DNS server</li></ul></li></ul><ul id="e655973d-512e-45ab-a894-38ab86302809" class="bulleted-list"><li style="list-style-type:circle">IP ↔ Hostname relationships</li></ul></li></ul></details></li></ul><ul id="226b8704-bfa0-4fd4-9f6f-8b326a096419" class="toggle"><li><details open=""><summary>Getting started with Network Manager</summary><ul id="1668a8e2-7f76-4c23-97ff-376811665ced" class="bulleted-list"><li style="list-style-type:disc">Commands:<ul id="7a28679e-3ae7-43a9-adb7-c1e03ecc9347" class="bulleted-list"><li style="list-style-type:circle"><code>systemctl status NetworkManager</code> → <strong>Service that controls entire network manager</strong></li></ul><ul id="7a234e55-3e14-45da-a5b8-2f7f82999ff5" class="bulleted-list"><li style="list-style-type:circle"><code>ps -ef | grep Network</code></li></ul></li></ul><ul id="201ae9f4-8d1d-4739-acbb-8cccabc1e218" class="bulleted-list"><li style="list-style-type:disc">It’s a service and set of tools designed specifically to make it easier to manage the networking configuration on Linux systems and is the default network management service on RHEL 8</li></ul><ul id="db91a8e0-01f9-4054-8d95-e7c27750fe8f" class="bulleted-list"><li style="list-style-type:disc">Tools → <strong>GUI, nmtui, and nmcli</strong></li></ul></details></li></ul><ul id="ed663f9e-1431-4761-8f62-8baeccb04e35" class="toggle"><li><details open=""><summary>Network configuration methods (<code>nmtui</code>, <code>nmcli</code>, <code>nm-connection-editor</code>, and GNOME Settings)</summary><ul id="eedd4e7f-219d-47d3-98b8-b89cfefac0ea" class="toggle"><li><details open=""><summary>Commands</summary><ul id="be6500e9-9d83-45f8-b2cc-6890f71abc2e" class="bulleted-list"><li style="list-style-type:disc"><code>nmcli</code> → Network Manager Command Line Interface<ul id="b673b0a8-3be0-4410-b95e-279b7cb96967" class="bulleted-list"><li style="list-style-type:circle">A bit complicated, so <code>nmtui</code> is recommended</li></ul><ul id="aa4be94b-322a-432a-a342-18dbb618e0ce" class="bulleted-list"><li style="list-style-type:circle">When the GUI is not accessible</li></ul><ul id="24f8b1bc-481d-4ab6-9127-1b53edc9c9da" class="bulleted-list"><li style="list-style-type:circle">Can be used in scripts</li></ul><ul id="7ef66071-05f2-4f36-93c0-902ea981d309" class="bulleted-list"><li style="list-style-type:circle"><code>nmcli connection</code></li></ul><ul id="7fbe5306-8fe6-4d66-ba87-7a86f4006a80" class="bulleted-list"><li style="list-style-type:circle"><code>nmcli connection show</code></li></ul><ul id="f176ce8d-10e3-472b-ba6f-a433c2afd9df" class="bulleted-list"><li style="list-style-type:circle">Static IP<ul id="eabb0720-45fa-44d7-97c4-19d2cea79787" class="bulleted-list"><li style="list-style-type:square"><code>nmcli connection --help</code></li></ul></li></ul></li></ul><ul id="46dff7e9-b9eb-4b38-a6e4-7641c2944215" class="bulleted-list"><li style="list-style-type:disc"><code>nmtui</code>  → Network Manager Text User Interface<ul id="079c1c87-8e8d-4bfe-9519-cf3f550b5c7b" class="bulleted-list"><li style="list-style-type:circle">Can run in any terminal window</li></ul><ul id="f075c1d8-e63a-45e7-941d-8300846faf19" class="bulleted-list"><li style="list-style-type:circle">Allows changes by menu selections and entering data</li></ul><ul id="69a5c105-d299-4a50-a0c3-32e63461bf86" class="bulleted-list"><li style="list-style-type:circle">Can also bond or team (team is just a newer version of bond) two network interfaces together – if interface dies, other takes over. A good article on how to do it is <a href="https://www.rootusers.com/how-to-configure-network-teaming-in-linux/">here</a></li></ul></li></ul></details></li></ul><ul id="f977d4c7-6efb-44af-9454-3137bf8be4ea" class="toggle"><li><details open=""><summary><strong>nm-connection-editor</strong> → Full GUI tool providing access to most of the NetworkManager configuration options. It can only be accessed via Desktop or console. </summary></details></li></ul><ul id="845ad781-d4f0-442c-ba96-0b19b5759a09" class="bulleted-list"><li style="list-style-type:disc"><strong>GNOME Settings → </strong>The nework screen of the GNOME desktop settings application sllows basic network management tasks to be performed</li></ul></details></li></ul><ul id="d58643b9-c8f3-4a6f-bbbf-960dcbb4b809" class="toggle"><li><details open=""><summary>Network files and basic commands</summary><ul id="b509e2b2-ef21-4ba3-8e4b-ad07a038cd59" class="toggle"><li><details open=""><summary>Files</summary><ul id="7c02f966-7655-448d-be77-3bdf66cdadc5" class="bulleted-list"><li style="list-style-type:disc"><code>/etc/sysconfig/network-scripts</code><ul id="1e6ff846-7541-4904-af52-512fcac5e062" class="bulleted-list"><li style="list-style-type:circle">If editing connection settings manually</li></ul></li></ul><ul id="f5bca302-a767-4b04-9262-76f4537aed0a" class="bulleted-list"><li style="list-style-type:disc"><code>/etc/hsots</code><ul id="b54275d1-0671-4b35-9091-4c9fe8de42a7" class="bulleted-list"><li style="list-style-type:circle">A local DNS, &lt;IP&gt; to &lt;HOSTNAME&gt; </li></ul></li></ul><ul id="a078b4dd-26f4-4b94-923e-56e899ed9724" class="bulleted-list"><li style="list-style-type:disc"><code>/etc/hostname</code><ul id="e5d80b1f-f993-4868-996f-77c76b1ba504" class="bulleted-list"><li style="list-style-type:circle">If need to change the hostname</li></ul><ul id="cd63b343-36e5-4095-9159-7a8b1c5e5557" class="bulleted-list"><li style="list-style-type:circle">Modify </li></ul><ul id="78f12433-fcc0-48bc-b910-ca761a25b2cf" class="bulleted-list"><li style="list-style-type:circle">Restart the <a href="https://www.notion.so/RedHat-Certified-System-Administrator-7f5affdd179a4c5e97a39f09aff4a66e">nework manager</a></li></ul></li></ul><ul id="0f3b46b9-65be-4c61-9d27-71a5f00ed77e" class="bulleted-list"><li style="list-style-type:disc"><code>/etc/resolve.conf</code><ul id="18dc4f3a-328b-4a0c-856d-0892aed34a63" class="bulleted-list"><li style="list-style-type:circle">Information of the DNS server</li></ul></li></ul><ul id="5f53db7d-1744-403b-8287-680dd27d8abb" class="bulleted-list"><li style="list-style-type:disc"><code>/etc/nsswitch.conf</code><ul id="d26b99ab-6a48-4309-8f32-cd7702d91eb6" class="bulleted-list"><li style="list-style-type:circle"><code>networks: files dns</code> → This entry signifies that for looking up the IP addresses, I want the system to go to the files <strong>first</strong> and then to the <strong>DNS</strong> servers</li></ul></li></ul></details></li></ul><ul id="d00f6339-59dc-40df-9c41-fac5aa87b7c9" class="toggle"><li><details open=""><summary>Commands</summary><ul id="0a196c66-4d10-46cf-b44b-ce032e30e852" class="bulleted-list"><li style="list-style-type:disc"><code>ping</code></li></ul><ul id="d3abedc9-c2fa-4825-b63c-1447982c61c6" class="bulleted-list"><li style="list-style-type:disc"><code>ifconfig</code> or <code>ip</code> (has sub objects). e.g. <code>ip address</code></li></ul><ul id="78f9a913-b20f-470c-ae74-4f58b1e99e08" class="bulleted-list"><li style="list-style-type:disc"><code>ifup or ifdown</code><ul id="1235bf03-c531-4b1d-a669-cbab385bb5dd" class="bulleted-list"><li style="list-style-type:circle">Activates a network connection → Same can be done with <code>nmtui</code></li></ul></li></ul><ul id="cd0d4b45-0da9-4b4d-b788-3a598a2de2d0" class="bulleted-list"><li style="list-style-type:disc"><code>netstat</code><ul id="251502aa-ff9f-4fa6-b4f3-24cb7a1b2268" class="bulleted-list"><li style="list-style-type:circle"><code>netstat -a</code> : What is connected to your machine → Have some bluetooth connections information as well. </li></ul></li></ul><ul id="65d1592c-909c-42fe-b085-6655b2f430fb" class="bulleted-list"><li style="list-style-type:disc"><code>traceroute</code><ul id="4fb5e5b3-9681-4637-83b3-dff3ceedb424" class="bulleted-list"><li style="list-style-type:circle">how your computer is going from one computer to another</li></ul></li></ul><ul id="0b81cc5c-389e-43cc-a212-abef54c8fa39" class="bulleted-list"><li style="list-style-type:disc"><code>tcpdump</code> → refer <a href="https://www.notion.so/RedHat-Certified-System-Administrator-7f5affdd179a4c5e97a39f09aff4a66e">here</a></li></ul><ul id="f6112604-a900-41ed-b5ce-b3096fbdd8dc" class="bulleted-list"><li style="list-style-type:disc"><code>nslookup or dig</code> → refer <a href="https://www.notion.so/RedHat-Certified-System-Administrator-7f5affdd179a4c5e97a39f09aff4a66e">here</a>. <code>dig</code> gives same information but different format</li></ul><ul id="3392c0ed-5963-45ff-89ab-487d1d994d16" class="bulleted-list"><li style="list-style-type:disc"><code>ethtool &lt;network_interface&gt;</code><ul id="095165cc-ee9d-4066-adc7-e73261eecd46" class="bulleted-list"><li style="list-style-type:circle">Ether adapter, it’s speed, status, link speed</li></ul><ul id="284f1119-0a04-4499-b573-e7a0f87a11af" class="bulleted-list"><li style="list-style-type:circle">If the adpeter is up or not</li></ul></li></ul></details></li></ul></details></li></ul></details></li></ul><ul id="46764279-fae4-4318-b470-a4f6890e5bb5" class="toggle"><li><details open=""><summary><mark class="highlight-teal">Archive and transfer files → 37Min</mark></summary><ul id="d1428fb8-362e-4e5c-af2d-192f66757c9f" class="toggle"><li><details open=""><summary>Compress and un-Compress Files</summary><ul id="a20be753-6074-4b5a-89b8-0d899f45d798" class="bulleted-list"><li style="list-style-type:disc"><code>tar</code> → Put all files in a bundle<ul id="761d9653-c857-4dce-a7d2-27e8ae683063" class="bulleted-list"><li style="list-style-type:circle">Tar: <ul id="8cd17e53-57c5-45dc-89ae-e91ad94ef2aa" class="bulleted-list"><li style="list-style-type:square"><code>tar cvf &lt;tarfile.tar&gt; &lt;directory_to_tar&gt; </code><ul id="43b05563-daa7-4497-aefa-490c889969b5" class="bulleted-list"><li style="list-style-type:disc"><code>tar cvf current_dir .</code><ul id="85e4124d-ae95-4888-b111-584980193bbd" class="bulleted-list"><li style="list-style-type:circle">Will give an error as you’re going to tar the dir and you’re in it</li></ul></li></ul></li></ul></li></ul><ul id="86c30785-c43d-4b40-b772-c5ffaa9c570d" class="bulleted-list"><li style="list-style-type:circle">Untar: <ul id="b3c6c81d-5c9e-4f3a-b23e-1b3f510e870a" class="bulleted-list"><li style="list-style-type:square"><code>tar xvf &lt;tarfile.tar&gt; </code>-&gt; Uncompress in the current directory<ul id="85b1e93b-796b-4261-8f47-9f28c4f5868c" class="bulleted-list"><li style="list-style-type:disc"><code>tar xvf &lt;tarfile.tar&gt; -C /path/where/you/want</code></li></ul></li></ul></li></ul></li></ul><ul id="e3cae5ba-4ed0-4c5c-a805-37b16e18e058" class="bulleted-list"><li style="list-style-type:disc"><code>gzip</code> → Gunzip = Compress the file<ul id="0f66572f-1663-4504-89c4-2da6fe4114ec" class="bulleted-list"><li style="list-style-type:circle"><code>gzip &lt;tar_file_to_compress&gt;</code><ul id="339d3eae-0820-410f-9c9b-ae7236fc9ddb" class="bulleted-list"><li style="list-style-type:square">Outputfile comes with <code>.gz</code> suffix</li></ul></li></ul></li></ul><ul id="ece2002a-dc7e-4bc9-85a7-0d5c6baf50a9" class="bulleted-list"><li style="list-style-type:disc"><code>gzip -d</code>  → Uncompress files<ul id="0a36d5d9-7677-469b-98d3-89e1136d4d64" class="bulleted-list"><li style="list-style-type:circle"><code>gzip -d &lt;gz file to uncompress&gt;</code></li></ul></li></ul><ul id="f6e291f8-f336-4df7-aee5-1824898c05a8" class="bulleted-list"><li style="list-style-type:disc"></li></ul></details></li></ul><ul id="98fda741-453a-48b5-a86f-08276e0518ed" class="toggle"><li><details open=""><summary>FTP → File Transfer Protocol</summary><ul id="1de71ea7-4dce-4740-a254-c3740c4de049" class="bulleted-list"><li style="list-style-type:disc">Protocol for transferring files from Server A to Server B</li></ul><ul id="20818905-67ab-44f7-afe7-ad686f719841" class="bulleted-list"><li style="list-style-type:disc">Default port is Port 21</li></ul><ul id="eaa6fc5a-e972-4374-82c2-cc073b606fe4" class="bulleted-list"><li style="list-style-type:disc">Watch this Udemy <a href="https://www.udemy.com/course/unofficial-linux-redhat-certified-system-administrator-rhcsa-8/learn/lecture/26928988#overview">lecture</a> for setting up FTP between server and client</li></ul></details></li></ul><ul id="c7746cb0-87cf-4c14-9bae-810fe6b2c10c" class="toggle"><li><details open=""><summary>SCP → Secure Transfer Protocol</summary><ul id="db32d52c-de5f-432c-b408-d779deb6f8c3" class="bulleted-list"><li style="list-style-type:disc">More secure and authnetic than FTP</li></ul><ul id="c49763b2-7bbf-4a87-9502-efb3b9af9aab" class="bulleted-list"><li style="list-style-type:disc">Default Port is SSH Port 22</li></ul><ul id="7ce186c0-d2d3-4e08-9b30-6ce5eec9ee1a" class="bulleted-list"><li style="list-style-type:disc">No new port as it’s piggybacking on SSH</li></ul><ul id="065faf29-522e-4957-8f7e-540b020e4795" class="bulleted-list"><li style="list-style-type:disc">SSH daemon should be running on the server in order to receive incoming files on port 22</li></ul><ul id="f437280a-daeb-44e7-880b-5ca6f15863ad" class="bulleted-list"><li style="list-style-type:disc"><code>scp &lt;local_file_name&gt; server_username@server_ip:/path/to/save/file</code></li></ul></details></li></ul></details></li></ul><ul id="e8449036-221a-448f-a418-f8ff46196b08" class="toggle"><li><details open=""><summary><mark class="highlight-teal">Install and update software → 37Min</mark></summary><ul id="e095afc5-ead4-49c3-8a10-08e3f0961cdf" class="toggle"><li><details open=""><summary>Package Management (<code>rpm</code> and <code>yum</code>)</summary><ul id="5468c68d-cda3-4326-b453-a17ec9eb5bb9" class="bulleted-list"><li style="list-style-type:disc"><code>yum</code> / <code>dnf</code> commands. <code>yum</code> is deprecated, <code>dnf</code> is way to go in future for CentOS and RHEL</li></ul><ul id="5bca4194-e006-4ec9-afca-4a8ba4b8b561" class="bulleted-list"><li style="list-style-type:disc"><code>apt-get</code> is used for other linux systems</li></ul><ul id="70d80fb6-7293-40c6-ba33-2bc08e6a5274" class="bulleted-list"><li style="list-style-type:disc">YUM ( go online with this URL (in config files) and install a package to the system)<ul id="1e759281-56ed-4c0d-b975-eab7d474b6ae" class="bulleted-list"><li style="list-style-type:circle">Installs package from repos defined in <code>/etc/yum.repos.d</code></li></ul><ul id="4b9be091-0ed6-443b-8cdb-06d05bd67c8f" class="bulleted-list"><li style="list-style-type:circle">These files have links for those packages</li></ul><ul id="23d4a0fa-6869-4b1e-bc4c-141ceae46d6b" class="bulleted-list"><li style="list-style-type:circle">First checks if the package is available</li></ul><ul id="8f943b02-3077-4117-b97b-127c2338f748" class="toggle"><li><details open=""><summary>commands</summary><ul id="53db4ff9-1178-465e-a85e-437d71b603bd" class="bulleted-list"><li style="list-style-type:disc"><code>yum install &lt;package_name&gt;</code></li></ul><ul id="90084d03-fcbe-4a19-90c5-09b178bec525" class="bulleted-list"><li style="list-style-type:disc"><code>yum install httpd</code> # httpd = apache package</li></ul></details></li></ul></li></ul><ul id="e39b034f-613c-43fe-8216-239b5d59add8" class="bulleted-list"><li style="list-style-type:disc">RPM (Red Hat package Manager)<ul id="6f531db7-5873-4494-ae4f-8f9936f1f0ac" class="bulleted-list"><li style="list-style-type:circle">When already have a package on the system – when don’t have internet access</li></ul><ul id="826fe7a5-9c73-4761-8df6-19d60494cca5" class="toggle"><li><details open=""><summary>Commands</summary><ul id="387acb1e-c073-43a4-8220-32f4b80a5d1e" class="bulleted-list"><li style="list-style-type:disc"><code>rpm -qa</code> # query (<code>q</code>) all (<code>a</code>) packages installed on the system</li></ul><ul id="56793aef-9ded-4e6d-8396-c8f3e0cb7cf4" class="bulleted-list"><li style="list-style-type:disc"><code>rpm -ihv /tmp/package.rpm</code> → to install package present at <em>/tmp/package.rpm</em></li></ul></details></li></ul></li></ul><ul id="04b0ae89-0a8d-43f0-833e-8ae5bd7365cc" class="bulleted-list"><li style="list-style-type:disc">To remove / uninstall package<ul id="68cb0c34-1953-40ff-9207-e1e2ce61d245" class="toggle"><li><details open=""><summary>Commands</summary><ul id="829ad713-c09d-490c-acb2-f2bfbae65ecf" class="bulleted-list"><li style="list-style-type:disc"><code>rpm -e &lt;package_name&gt;</code></li></ul><ul id="29c9a131-4181-4626-a189-373b03842b4b" class="bulleted-list"><li style="list-style-type:disc"><code>yum remove &lt;package_name&gt;</code></li></ul></details></li></ul><ul id="9c3fc777-f604-4bc8-9b7c-7048ab0e7d2a" class="bulleted-list"><li style="list-style-type:circle">Both commands do same thing – remove packages</li></ul></li></ul></details></li></ul><ul id="8116e76c-50d2-4b48-9090-395d157e28c3" class="toggle"><li><details open=""><summary>System Upgrade / Patch Management</summary><ul id="8f9d0493-d336-4079-bac7-32bf4fa7a51d" class="bulleted-list"><li style="list-style-type:disc">Major Version ≠ can not never use YUM command</li></ul><ul id="0a84435b-45f0-4175-9ac2-65bcbf016007" class="bulleted-list"><li style="list-style-type:disc">Minior version:<ul id="27ee8bdd-1153-44b1-be0c-05322e0cd8e4" class="bulleted-list"><li style="list-style-type:circle"><code>yum update -y</code> # dont ask questions, just update everything</li></ul></li></ul><ul id="21448edc-e136-46a2-88f2-56efe67e5d60" class="bulleted-list"><li style="list-style-type:disc"><strong>Upgrade vs. Update</strong><ul id="a1a856f7-ee66-480a-8696-db4266cd01b5" class="bulleted-list"><li style="list-style-type:circle">Upgrade: Deletes Packages (deletes old v5.0 package and installs new one)</li></ul><ul id="21bfbf5e-cab7-4987-91c6-82cd8b88bbc3" class="bulleted-list"><li style="list-style-type:circle">Update: Preservers old packages (in case need to go back)</li></ul></li></ul></details></li></ul><ul id="668412bd-cc83-4abb-b32d-128eab0e96de" class="toggle"><li><details open=""><summary>Advanced Package Management</summary><ul id="422238c8-58bd-440d-84c8-f6f7079ae391" class="bulleted-list"><li style="list-style-type:disc">Installing Packages<ul id="7ecc1f6e-6648-4d40-aa91-998a2af860c1" class="toggle"><li><details open=""><summary>Install KornShell</summary><ul id="d4e50d2b-0d8c-48da-8e85-d8eb9c802f12" class="bulleted-list"><li style="list-style-type:disc"><code>yum install ksh</code></li></ul><ul id="32d59a3b-2dd5-4f47-87ed-a9cc096b0602" class="bulleted-list"><li style="list-style-type:disc">Option 2 (without internet to the server in question)</li></ul><ul id="e34043c5-ea0b-4c82-aa76-156108a144a0" class="bulleted-list"><li style="list-style-type:disc"></li></ul></details></li></ul></li></ul><ul id="24f9f120-17c3-40e1-8643-9b69b3dd48b2" class="bulleted-list"><li style="list-style-type:disc">Packages configuration files<ul id="fecd35e2-c988-4a79-8519-6ec4ad780641" class="bulleted-list"><li style="list-style-type:circle"><code>rpm -qc &lt;package_name&gt;</code></li></ul></li></ul><ul id="439d194b-9fda-4a30-8303-0732507ca141" class="bulleted-list"><li style="list-style-type:disc">Which command is based on which package<ul id="bff92f92-0925-45d7-ae53-91cb515de96a" class="bulleted-list"><li style="list-style-type:circle"><code>rpm -qf &lt;path_of_command&gt;</code><ul id="1f045b31-9902-4e42-9c9f-56e796625939" class="bulleted-list"><li style="list-style-type:square"><code>rpm -qf /usr/bin/ksh</code></li></ul></li></ul></li></ul></details></li></ul></details></li></ul><ul id="61302a73-cc76-4108-9eff-04fe400fe2e2" class="toggle"><li><details open=""><summary>Access Linux files systems → 13Min</summary><ul id="504ecc30-7f89-4116-8331-c4cb7f16215c" class="toggle"><li><details open=""><summary>Commands</summary><ul id="cf047470-065f-4499-bad1-7ce043c63874" class="bulleted-list"><li style="list-style-type:disc"><code>fdisk</code> → Allows to create disk <ul id="4601f2ad-9566-4255-b68e-aa7ba1c03047" class="bulleted-list"><li style="list-style-type:circle"><code>fdisk -l</code> → list current disks from devices</li></ul><ul id="40f042a5-fa5f-4e7d-a6b3-1fbeddfb79ad" class="bulleted-list"><li style="list-style-type:circle"><code>fdisk /dev/sdb</code> → Assuming sda is taken, for adding new disk</li></ul></li></ul></details></li></ul></details></li></ul><ul id="7ee29448-7b68-43c9-9a63-5fdada7cdaf3" class="toggle"><li><details open=""><summary>Analyze servers and get support → 25Min </summary><ul id="6191440d-a1b8-4c58-b9de-bc654df72ab1" class="bulleted-list"><li style="list-style-type:disc"><code>sos report </code><ul id="11f7ae54-6c33-49aa-864f-0f0f0401ee4a" class="bulleted-list"><li style="list-style-type:circle">SOS report generation</li></ul><ul id="95322da2-a5e0-42f4-ad0e-a78ebb17e873" class="bulleted-list"><li style="list-style-type:circle">You can assign case id here –&gt; You need to create the case id first<ul id="24578e6c-4811-4a66-b75d-74d27ad88400" class="bulleted-list"><li style="list-style-type:square">If the case id is not availble, put dummy for the time being</li></ul></li></ul></li></ul><ul id="96926dfc-34f1-4568-a056-c6a621c51759" class="bulleted-list"><li style="list-style-type:disc"><strong>Cockpit </strong>is a web-based GUI tool by RedHat </li></ul><ul id="eb295037-f7a5-4c67-a4fb-108b212226f4" class="bulleted-list"><li style="list-style-type:disc">Optionally availble on Ubuntu and Fedora as well</li></ul><ul id="56f731cd-db7e-4033-8fa1-641fd666556c" class="bulleted-list"><li style="list-style-type:disc">Can monitor system resources, add or remove accounts, monitor system usage, shut down the system and even login via remote terminal – all via Web Interface</li></ul><ul id="d1532d8f-b52c-44aa-a505-5687af488a87" class="toggle"><li><details open=""><summary>Install Cockpit</summary><ul id="d670b258-5cea-47a4-bcb9-1a14575f976e" class="bulleted-list"><li style="list-style-type:disc"><code>yum/dnf install cockpit -y</code> # install with dependencies, don’t ask any questions</li></ul><ul id="c8ad8ad5-7d92-457e-bfc6-9deb63253742" class="bulleted-list"><li style="list-style-type:disc"><code>apt-get install cockpit</code> (for Ubuntu)</li></ul><ul id="c26efacd-0c26-4961-82c9-d9e06ec12999" class="bulleted-list"><li style="list-style-type:disc">Start and enable the service:<ul id="afd5bbbd-34f8-4066-8535-aec3f562e40b" class="bulleted-list"><li style="list-style-type:circle"><code>systemctl start|enable cockpit</code>#start or enable the service<ul id="819f20a1-6bb7-42c8-bde6-005fc9a91a26" class="bulleted-list"><li style="list-style-type:square">Service status is <code>static</code> in RHEL 8, so can not <code>enable</code> it at boot</li></ul></li></ul></li></ul><ul id="870279e4-4764-4546-ab95-de79955ca6a7" class="bulleted-list"><li style="list-style-type:disc">Access web-interface:<ul id="16abd347-f479-480e-9375-505abf2aa03e" class="bulleted-list"><li style="list-style-type:circle"><em>https://&lt;server_ip&gt;:9090</em></li></ul><ul id="3745ad1f-c99c-4500-b6ab-590bdd24c947" class="toggle"><li><details open=""><summary>What can do via Cockpit? </summary><ul id="5feda682-b97a-441c-be6c-6e435af9db6b" class="bulleted-list"><li style="list-style-type:disc">change hostname</li></ul><ul id="3a0a94f0-1097-4076-834b-3eb92b7ba17a" class="bulleted-list"><li style="list-style-type:disc">look at system performance via UI</li></ul><ul id="07ecd1c6-489e-490c-8991-d2f84df226c1" class="bulleted-list"><li style="list-style-type:disc">enable disable firewall</li></ul><ul id="68ddb8c6-035b-446a-aef3-b7320c515ac9" class="bulleted-list"><li style="list-style-type:disc">add or remove rules</li></ul><ul id="f6daeacf-9218-4938-b1c5-cc8418a32540" class="bulleted-list"><li style="list-style-type:disc">add or remove users</li></ul><ul id="cddfeab9-d76f-4748-9014-1808858fcbc5" class="bulleted-list"><li style="list-style-type:disc">look at storage</li></ul><ul id="a9475357-e6e7-4a76-be93-7a5120b3a223" class="bulleted-list"><li style="list-style-type:disc">look at networking</li></ul><ul id="b782085c-1c98-4894-8c3f-dd7b9bc74f67" class="bulleted-list"><li style="list-style-type:disc">add iscsi targets</li></ul><ul id="03740ef7-2799-4833-9006-e2e003bab4ce" class="bulleted-list"><li style="list-style-type:disc">create team or bond between interfaces (team is just newer version of bond)</li></ul><ul id="dfbb9375-f274-41b4-a36e-bfaee62a0b41" class="bulleted-list"><li style="list-style-type:disc">take a look at logs</li></ul><ul id="a54cc179-6a24-40eb-abb5-92fb9fa84fe0" class="bulleted-list"><li style="list-style-type:disc">take a look at services, start or stop any service</li></ul><ul id="7e4dd401-f827-4c76-95cf-bd1deb1f5595" class="bulleted-list"><li style="list-style-type:disc">Terminal Access!</li></ul></details></li></ul></li></ul></details></li></ul></details></li></ul></details></li></ul><ul id="a4098367-a3f4-4533-9ba6-f1a74f11ed97" class="bulleted-list"><li style="list-style-type:disc">RedHat PE (Preliminary Exam): <a href="https://www.redhat.com/en/services/training/pe124-preliminary-exam-red-hat-system-administration-I">https://www.redhat.com/en/services/training/pe124-preliminary-exam-red-hat-system-administration-I</a></li></ul><ul id="2a95804a-ea20-4411-815f-79dd9ff86799" class="toggle"><li><details open=""><summary>RH134 Topics</summary><ul id="2fd513fa-6863-474c-9c40-b0081e36d30c" class="toggle"><li><details open=""><summary>Improve command line productivity – BASH scripting → 61Min</summary></details></li></ul><ul id="5826b699-3ed3-438d-a77e-8d22e29bdfec" class="toggle"><li><details open=""><summary>Schedule future tasks → 4Min</summary></details></li></ul><ul id="3d0beec6-7371-4265-a153-4c872e81c3ba" class="toggle"><li><details open=""><summary>Time system performance → 20Min</summary></details></li></ul><ul id="3fc2bd65-72f3-4516-85b8-884f623478b3" class="toggle"><li><details open=""><summary>Control access to files with ACLs → 13Min</summary></details></li></ul><ul id="4f415bd2-ee99-4ff7-84a7-73d8cc4db5cc" class="toggle"><li><details open=""><summary>Manage SELinux security → 36Min</summary></details></li></ul><ul id="d8b206ca-9d39-4a80-bde8-34fe412e1449" class="toggle"><li><details open=""><summary>Manage basic storage → 18Min</summary></details></li></ul><ul id="fc4e6d39-887b-4740-ba5a-c9cf1bd48e84" class="toggle"><li><details open=""><summary>Manage logical volumes → 31Min</summary></details></li></ul><ul id="186ea3db-025e-4cdf-b2ad-57b83da142c6" class="toggle"><li><details open=""><summary>Implement advanced storage features → 17Min</summary></details></li></ul><ul id="15e08b39-1e2c-4b7d-b6b3-b9000551b9f1" class="toggle"><li><details open=""><summary>Access network-attached storage (NFS and Samba) → 60Min</summary></details></li></ul><ul id="2fa73786-c1ee-495e-b4cd-b5c7ddc5a075" class="toggle"><li><details open=""><summary>Control the boot process → 26Min</summary></details></li></ul><ul id="75c9e49a-618a-4596-873b-1107c79f4105" class="toggle"><li><details open=""><summary>Manage network security (Firewall) → 48Min</summary></details></li></ul><ul id="54b59b2c-2008-406b-8391-eee063319313" class="toggle"><li><details open=""><summary>Install Red Hat Enterprise Linux</summary></details></li></ul><ul id="9817887a-9b11-4294-b385-0020acf6aa2e" class="toggle"><li><details open=""><summary>Run Containers → 36Min</summary></details></li></ul></details></li></ul><p id="6d43d3f2-360e-4037-b851-c16d9561c79b" class="">
+</p></div></article></body></html>

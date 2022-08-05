@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'password_generator',
-    'todoapp'
+    'todoapp',
+    'rhel'
 ]
 
 MIDDLEWARE = [
